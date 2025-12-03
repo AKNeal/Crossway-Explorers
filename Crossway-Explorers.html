@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crossway Explorers - Enrollment</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f0e8;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #4a7c59, #3d6b4a);
+      color: white;
+    }
+    header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+    header p { opacity: 0.9; }
+    .form-container {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      margin: -20px 20px 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    .form-group { margin-bottom: 20px; }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #444;
+    }
+    .required::after { content: " *"; color: #e8734a; }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    input:focus { outline: none; border-color: #4a7c59; }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+    @media (max-width: 500px) { .row { grid-template-columns: 1fr; } }
+    .section-title {
+      font-weight: 700;
+      color: #4a7c59;
+      margin: 30px 0 15px;
+      padding-top: 20px;
+      border-top: 2px solid #eee;
+    }
+    .section-title:first-child { margin-top: 0; padding-top: 0; border: none; }
+    .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .checkbox-item input { width: 18px; height: 18px; accent-color: #4a7c59; }
+    .days-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+    .day-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .day-checkbox input { accent-color: #4a7c59; }
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #e8734a, #d85a32);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+    .submit-btn:hover { opacity: 0.95; }
+    .add-child-btn {
+      width: 100%;
+      padding: 12px;
+      background: #f0f0f0;
+      color: #4a7c59;
+      border: 2px dashed #4a7c59;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .add-child-btn:hover { background: #e8e8e8; }
+    .add-child-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .child-entry {
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .child-label {
+      font-weight: 700;
+      color: #4a7c59;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+    }
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .neal-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: auto;
+      z-index: 1000;
+      transition: transform 0.2s;
+    }
+    .neal-btn:hover { transform: scale(1.1); }
+    .neal-btn img { width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+
+  <a href="https://www.nealmedia.app" target="_blank" class="neal-btn">
+    <img src="https://i.imgur.com/12s7wwO.png" alt="Neal Media">
+  </a>
+
+  <header>
+    <h1>Crossway Explorers</h1>
+    <p>Before &amp; After School Care Enrollment</p>
+  </header>
+
+  <div class="container">
+    <div class="form-container">
+      <form id="enrollment-form" onsubmit="sendEmail(event)">
+
+```
+    <!-- PARENT -->
+    <div class="section-title">Parent/Guardian</div>
+    
+    <div class="form-group">
+      <label class="required">Name</label>
+      <input type="text" name="Parent Name" required>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label class="required">Email</label>
+        <input type="email" name="Email" required>
+      </div>
+      <div class="form-group">
+        <label class="required">Phone</label>
+        <input type="tel" name="Phone" required>
+      </div>
+    </div>
+
+    <!-- CHILDREN -->
+    <div class="section-title">Children</div>
+
+    <div id="children-container">
+      <div class="child-entry">
+        <div class="child-label">Child 1</div>
+        <div class="row">
+          <div class="form-group">
+            <label class="required">Name</label>
+            <input type="text" name="Child 1 Name" required>
+          </div>
+          <div class="form-group">
+            <label class="required">Age</label>
+            <input type="text" name="Child 1 Age" placeholder="e.g., 7" inputmode="numeric" pattern="[0-9]*" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="required">School</label>
+          <input type="text" name="Child 1 School" required>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" id="add-child-btn" class="add-child-btn" onclick="addChild()">+ Add Another Child</button>
+
+    <!-- PROGRAM -->
+    <div class="section-title">Program</div>
+
+    <div class="form-group">
+      <label>Select Programs</label>
+      <div class="checkbox-group">
+        <label class="checkbox-item">
+          <input type="checkbox" name="Before School" value="Yes">
+          <span>Before School - 6:00 AM - 8:30 AM ($30/day)</span>
+        </label>
+        <label class="checkbox-item">
+          <input type="checkbox" name="After School" value="Yes">
+          <span>After School - 3:00 PM - 6:30 PM ($42/day)</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Days Needed</label>
+      <div class="days-grid">
+        <label class="day-checkbox"><input type="checkbox" name="Mon" value="Yes"> Mon</label>
+        <label class="day-checkbox"><input type="checkbox" name="Tue" value="Yes"> Tue</label>
+        <label class="day-checkbox"><input type="checkbox" name="Wed" value="Yes"> Wed</label>
+        <label class="day-checkbox"><input type="checkbox" name="Thu" value="Yes"> Thu</label>
+        <label class="day-checkbox"><input type="checkbox" name="Fri" value="Yes"> Fri</label>
+      </div>
+    </div>
+
+    <!-- MEDICAL -->
+    <div class="form-group">
+      <label>Medical concerns (if any)</label>
+      <input type="text" name="Medical Concerns" placeholder="Leave blank if none">
+    </div>
+
+    <button type="submit" class="submit-btn">Submit Enrollment</button>
+
+  </form>
+</div>
+```
+
+  </div>
+
+  <footer>
+    <p><strong>Crossway Explorers</strong></p>
+  </footer>
+
+  <script>
+    let childCount = 1;
+    
+    function addChild() {
+      if (childCount >= 3) return;
+      childCount++;
+      
+      const container = document.getElementById('children-container');
+      const newChild = document.createElement('div');
+      newChild.className = 'child-entry';
+      newChild.innerHTML = `
+        <div class="child-label">Child ${childCount}</div>
+        <div class="row">
+          <div class="form-group">
+            <label class="required">Name</label>
+            <input type="text" name="Child ${childCount} Name" required>
+          </div>
+          <div class="form-group">
+            <label class="required">Age</label>
+            <input type="text" name="Child ${childCount} Age" placeholder="e.g., 7" inputmode="numeric" pattern="[0-9]*" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="required">School</label>
+          <input type="text" name="Child ${childCount} School" required>
+        </div>
+      `;
+      container.appendChild(newChild);
+      
+      if (childCount >= 3) {
+        document.getElementById('add-child-btn').disabled = true;
+        document.getElementById('add-child-btn').textContent = 'Maximum 3 children';
+      }
+    }
+
+    function sendEmail(e) {
+      e.preventDefault();
+      
+      const form = document.getElementById('enrollment-form');
+      const formData = new FormData(form);
+      
+      let body = 'NEW ENROLLMENT REQUEST\n\n';
+      body += '--- Parent/Guardian ---\n';
+      body += 'Name: ' + formData.get('Parent Name') + '\n';
+      body += 'Email: ' + formData.get('Email') + '\n';
+      body += 'Phone: ' + formData.get('Phone') + '\n\n';
+      
+      body += '--- Children ---\n';
+      for (let i = 1; i <= childCount; i++) {
+        body += 'Child ' + i + ': ' + formData.get('Child ' + i + ' Name') + ', Age ' + formData.get('Child ' + i + ' Age') + ', ' + formData.get('Child ' + i + ' School') + '\n';
+      }
+      
+      body += '\n--- Program ---\n';
+      body += 'Before School: ' + (formData.get('Before School') ? 'Yes' : 'No') + '\n';
+      body += 'After School: ' + (formData.get('After School') ? 'Yes' : 'No') + '\n';
+      
+      body += '\nDays: ';
+      const days = [];
+      if (formData.get('Mon')) days.push('Mon');
+      if (formData.get('Tue')) days.push('Tue');
+      if (formData.get('Wed')) days.push('Wed');
+      if (formData.get('Thu')) days.push('Thu');
+      if (formData.get('Fri')) days.push('Fri');
+      body += days.length ? days.join(', ') : 'None selected';
+      
+      body += '\n\n--- Medical ---\n';
+      body += 'Medical Concerns: ' + (formData.get('Medical Concerns') || 'None') + '\n';
+      
+      const mailtoLink = 'mailto:RossonsExplorers@proton.me?subject=' + encodeURIComponent('New Enrollment Request') + '&body=' + encodeURIComponent(body);
+      
+      window.location.href = mailtoLink;
+    }
+  </script>
+
+</body>
+</html>
