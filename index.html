@@ -232,11 +232,12 @@
 
     <!-- MEDICAL -->
     <div class="form-group">
-      <label>Medical concerns (if any)</label>
-      <input type="text" name="Medical Concerns" placeholder="Leave blank if none">
+      <label>Notes (medical concerns, food preferences, religious considerations, etc.)</label>
+      <input type="text" name="Notes" placeholder="Leave blank if none">
     </div>
 
     <button type="submit" class="submit-btn">Submit Enrollment</button>
+    <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.85rem;">Please allow up to 72 hours for a reply.</p>
 
   </form>
 </div>
@@ -258,23 +259,7 @@
       const container = document.getElementById('children-container');
       const newChild = document.createElement('div');
       newChild.className = 'child-entry';
-      newChild.innerHTML = `
-        <div class="child-label">Child ${childCount}</div>
-        <div class="row">
-          <div class="form-group">
-            <label class="required">Name</label>
-            <input type="text" name="Child ${childCount} Name" required>
-          </div>
-          <div class="form-group">
-            <label class="required">Age</label>
-            <input type="text" name="Child ${childCount} Age" placeholder="e.g., 7" inputmode="numeric" pattern="[0-9]*" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="required">School</label>
-          <input type="text" name="Child ${childCount} School" required>
-        </div>
-      `;
+      newChild.innerHTML = '<div class="child-label">Child ' + childCount + '</div><div class="row"><div class="form-group"><label class="required">Name</label><input type="text" name="Child ' + childCount + ' Name" required></div><div class="form-group"><label class="required">Age</label><input type="text" name="Child ' + childCount + ' Age" placeholder="e.g., 7" inputmode="numeric" pattern="[0-9]*" required></div></div><div class="form-group"><label class="required">School</label><input type="text" name="Child ' + childCount + ' School" required></div>';
       container.appendChild(newChild);
       
       if (childCount >= 3) {
@@ -313,8 +298,8 @@
       if (formData.get('Fri')) days.push('Fri');
       body += days.length ? days.join(', ') : 'None selected';
       
-      body += '\n\n--- Medical ---\n';
-      body += 'Medical Concerns: ' + (formData.get('Medical Concerns') || 'None') + '\n';
+      body += '\n\n--- Notes ---\n';
+      body += 'Notes: ' + (formData.get('Notes') || 'None') + '\n';
       
       const mailtoLink = 'mailto:RossonsExplorers@proton.me?subject=' + encodeURIComponent('New Enrollment Request') + '&body=' + encodeURIComponent(body);
       
