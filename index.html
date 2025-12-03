@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -156,6 +157,7 @@
     <div class="form-container">
       <form id="enrollment-form" onsubmit="sendEmail(event)">
 
+```
     <!-- PARENT -->
     <div class="section-title">Parent/Guardian</div>
     
@@ -239,6 +241,7 @@
 
   </form>
 </div>
+```
 
   </div>
 
@@ -298,7 +301,7 @@
       body += '\n\n--- Notes ---\n';
       body += 'Notes: ' + (formData.get('Notes') || 'None') + '\n';
       
-      const mailtoLink = 'mailto:RossonsExplorers@proton.me?subject=' + encodeURIComponent('New Enrollment Request') + '&body=' + encodeURIComponent(body);
+      const mailtoLink = 'mailto:crosswayexplorers@proton.me?subject=' + encodeURIComponent('New Enrollment Request') + '&body=' + encodeURIComponent(body);
       
       window.location.href = mailtoLink;
     }
