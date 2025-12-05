@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -156,91 +155,90 @@
   <div class="container">
     <div class="form-container">
       <form id="enrollment-form" onsubmit="sendEmail(event)">
+        
+        <!-- PARENT -->
+        <div class="section-title">Parent/Guardian</div>
+        
+        <div class="form-group">
+          <label class="required">Name</label>
+          <input type="text" name="Parent Name" required>
+        </div>
 
-    <!-- PARENT -->
-    <div class="section-title">Parent/Guardian</div>
-    
-    <div class="form-group">
-      <label class="required">Name</label>
-      <input type="text" name="Parent Name" required>
-    </div>
-
-    <div class="row">
-      <div class="form-group">
-        <label class="required">Email</label>
-        <input type="email" name="Email" required>
-      </div>
-      <div class="form-group">
-        <label class="required">Phone</label>
-        <input type="tel" name="Phone" required>
-      </div>
-    </div>
-
-    <!-- CHILDREN -->
-    <div class="section-title">Children</div>
-
-    <div id="children-container">
-      <div class="child-entry">
-        <div class="child-label">Child 1</div>
         <div class="row">
           <div class="form-group">
-            <label class="required">Name</label>
-            <input type="text" name="Child 1 Name" required>
+            <label class="required">Email</label>
+            <input type="email" name="Email" required>
           </div>
           <div class="form-group">
-            <label class="required">Age</label>
-            <input type="text" name="Child 1 Age" placeholder="e.g., 7" inputmode="numeric" pattern="[0-9]*" required>
+            <label class="required">Phone</label>
+            <input type="tel" name="Phone" required>
           </div>
         </div>
-        <div class="form-group">
-          <label class="required">School</label>
-          <input type="text" name="Child 1 School" required>
+
+        <!-- CHILDREN -->
+        <div class="section-title">Children</div>
+
+        <div id="children-container">
+          <div class="child-entry">
+            <div class="child-label">Child 1</div>
+            <div class="row">
+              <div class="form-group">
+                <label class="required">Name</label>
+                <input type="text" name="Child 1 Name" required>
+              </div>
+              <div class="form-group">
+                <label class="required">Age</label>
+                <input type="text" name="Child 1 Age" placeholder="e.g., 7" inputmode="numeric" pattern="[0-9]*" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="required">School</label>
+              <input type="text" name="Child 1 School" required>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <button type="button" id="add-child-btn" class="add-child-btn" onclick="addChild()">+ Add Another Child</button>
+
+        <!-- PROGRAM -->
+        <div class="section-title">Program</div>
+
+        <div class="form-group">
+          <label>Select Programs</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" name="Before School" value="Yes">
+              <span>Before School - 6:00 AM - Bus pickup ($15/hour)</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="After School" value="Yes">
+              <span>After School - Bus drop off - 6:30 PM ($15/hour)</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Days Needed</label>
+          <div class="days-grid">
+            <label class="day-checkbox"><input type="checkbox" name="Mon" value="Yes"> Mon</label>
+            <label class="day-checkbox"><input type="checkbox" name="Tue" value="Yes"> Tue</label>
+            <label class="day-checkbox"><input type="checkbox" name="Wed" value="Yes"> Wed</label>
+            <label class="day-checkbox"><input type="checkbox" name="Thu" value="Yes"> Thu</label>
+            <label class="day-checkbox"><input type="checkbox" name="Fri" value="Yes"> Fri</label>
+          </div>
+        </div>
+
+        <!-- MEDICAL -->
+        <div class="form-group">
+          <label>Notes (medical concerns, food preferences, religious considerations, etc.)</label>
+          <input type="text" name="Notes" placeholder="Leave blank if none">
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Enrollment</button>
+        <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.85rem;">Please allow up to 72 hours for a reply.</p>
+
+      </form>
     </div>
-
-    <button type="button" id="add-child-btn" class="add-child-btn" onclick="addChild()">+ Add Another Child</button>
-
-    <!-- PROGRAM -->
-    <div class="section-title">Program</div>
-
-    <div class="form-group">
-      <label>Select Programs</label>
-      <div class="checkbox-group">
-        <label class="checkbox-item">
-          <input type="checkbox" name="Before School" value="Yes">
-          <span>Before School - 6:00 AM - 8:30 AM ($30/day)</span>
-        </label>
-        <label class="checkbox-item">
-          <input type="checkbox" name="After School" value="Yes">
-          <span>After School - 3:00 PM - 6:30 PM ($42/day)</span>
-        </label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Days Needed</label>
-      <div class="days-grid">
-        <label class="day-checkbox"><input type="checkbox" name="Mon" value="Yes"> Mon</label>
-        <label class="day-checkbox"><input type="checkbox" name="Tue" value="Yes"> Tue</label>
-        <label class="day-checkbox"><input type="checkbox" name="Wed" value="Yes"> Wed</label>
-        <label class="day-checkbox"><input type="checkbox" name="Thu" value="Yes"> Thu</label>
-        <label class="day-checkbox"><input type="checkbox" name="Fri" value="Yes"> Fri</label>
-      </div>
-    </div>
-
-    <!-- MEDICAL -->
-    <div class="form-group">
-      <label>Notes (medical concerns, food preferences, religious considerations, etc.)</label>
-      <input type="text" name="Notes" placeholder="Leave blank if none">
-    </div>
-
-    <button type="submit" class="submit-btn">Submit Enrollment</button>
-    <p style="text-align: center; margin-top: 15px; color: #666; font-size: 0.85rem;">Please allow up to 72 hours for a reply.</p>
-
-  </form>
-</div>
-
   </div>
 
   <footer>
